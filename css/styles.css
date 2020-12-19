@@ -1,0 +1,314 @@
+body {
+    background-color: #FFFFFF;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Welcome Page */
+
+#welcome {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://japandeluxetours.com/uploads/2017/06/20170609135305_593b0ab176b4c.jpg');
+  height: 100vh;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.animated {
+    -webkit-animation-duration: 2.5s;
+    -moz-animation-duration: 2.5s;
+    -o-animation-duration: 2.5s;
+    animation-duration: 2.5s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity: 0; 
+    }
+  
+    100% {
+      opacity: 1; 
+    }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  } 
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    } 
+  }
+  
+  .fadeIn {
+    -webkit-animation-name: fadeIn;
+    -moz-animation-name: fadeIn;
+    -o-animation-name: fadeIn;
+    animation-name: fadeIn;
+  }
+  
+  /* --- Animation --- */
+  @-webkit-keyframes fadeInUp {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-moz-keyframes fadeInUp {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-o-keyframes fadeInUp {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    -moz-animation-name: fadeInUp;
+    -o-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+    }
+
+/* Name Form */
+form {
+    display: table;
+    margin: auto;
+}
+
+/* Game Board */
+#main-game {
+  height: 50%;
+}
+
+#main-board {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../card-imgs/9335444b0b481dfa24364f5f97a53793.jpg');
+}
+
+.row {
+    text-align: center;
+}
+
+.instructions .row {
+    text-align: left;
+}
+
+/* Cards */
+
+img {
+  width: 50px;
+  padding: 2px;
+}
+
+.paired img {
+  width: 33px;
+}
+
+/* Board Row */
+
+#board {
+  background: rgba(210, 180, 140, .9);
+  background-size: cover;
+  border: 3px solid #8b5d2e;
+  padding: 10px 0px 10px 0px;
+  min-height: 200px;
+}
+
+/* Paired Row */
+
+.pairs {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../card-imgs/tatami.jpg');
+  color: #e5e4e2;
+}
+
+#computer-pairs {
+  padding-right: 5px;
+}
+
+#user-pairs {
+  padding-left: 5px;
+}
+
+.matched {
+  display: inline-block;
+  padding: 2px 3px 2px 3px;
+  margin: 2px;
+}
+
+.month-title {
+  margin-bottom: 0;
+}
+
+.paired {
+  min-height: 200px;
+  border-right: 3px solid black;
+}
+
+.narrow-width {
+  max-width: 45%;
+  margin: 0 auto;
+}
+
+/* Instruction Notification */
+.rule-notice {
+  background-color: lightyellow;
+  border: 2px solid grey;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.rule-notice h5 {
+  margin-top: 6px;
+}
+
+.flip-notice {
+  background-color: lightyellow;
+  border: 2px solid grey;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.flip-notice h5 {
+  margin-top: 6px;
+}
+
+.highlight {
+  border: 3px solid yellow;
+}
+
+.highlight-deck {
+  border: 3px solid lightyellow;
+}
+
+/* Current Player Display */
+
+.current-player-notice h5 {
+  margin-top: 6px;
+}
+
+#current-computer {
+  background-color: lightgrey;
+  border: 2px solid grey;
+  padding: 5px;
+  border-radius: 55px;
+}
+
+#current-user {
+  background-color: lightgreen;
+  border: 2px solid grey;
+  padding: 5px;
+  border-radius: 55px;
+}
+
+/* Board Format */
+
+.maintain-height {
+    vertical-align: middle;
+    min-height: 100px;
+}
+
+/* Winner Display (End Game) */
+
+#winner {
+  height: 100vh;
+}
+
+#game-winner {
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+
+#point-display, #leaderboard {
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+
+#point-display {
+  height: 33%;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.display-winner {
+  border-radius: 5px;
+}
+
+#winner-row {
+  margin-bottom: 45px;
+}
+
+/* User Won */
+
+.winner-user {
+  background-image: url('../card-imgs/japanese-modern-interior-art-112-artmarketjapan.jpg');
+  background-position: bottom;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Computer Won */
+.winner-computer {
+  background-image: url('../card-imgs/fig2_wasdale_head.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+

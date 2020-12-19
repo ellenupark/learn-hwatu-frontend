@@ -8,9 +8,6 @@ const gameURL = "http://localhost:3000/games";
 let game;
 
 document.addEventListener("DOMContentLoaded", function() {
-    API.createNewGame();
-
-
   prepareGame();
 });
 
@@ -18,6 +15,9 @@ const prepareGame = async () => {
 
     await API.createNewGame();
     await API.createPlayers();
+    await API.assignCards();
+
+    
 //   await API.loadPlayers();
 //   await Card.dealCards();
 //   Card.loadCardsToSummary();
@@ -30,3 +30,11 @@ async function asyncForEach(array, callback) {
       await callback(array[index], index, array);
     }
 }
+
+function sample(array) {
+    return array[Math.floor ( Math.random() * array.length )]
+  }
+  
+  function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }

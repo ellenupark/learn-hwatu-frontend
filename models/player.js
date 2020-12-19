@@ -7,6 +7,26 @@ class Player {
         // this.renderPlayer();
     };
 
+    static checkPlayerForFullHand(player) {
+        let full = false;
+
+        switch (player.role) {
+            case 'user':
+                player.cards.length === 7 ? full = true : full = false;
+                break;
+            case 'computer':
+                player.cards.length === 7 ? full = true : full = false;
+                break;
+            case 'deck':
+                player.cards.length === 21 ? full = true : full = false;
+                break;
+            case 'board':
+                player.cards.length === 9 ? full = true : full = false;
+                break;
+        };
+        return full;
+    };
+
     // add(card) {
     //     this.cards.push(card);
     //     return card;

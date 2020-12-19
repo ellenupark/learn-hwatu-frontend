@@ -7,4 +7,20 @@ class Game {
         this.id = id;
         game = this;
     };
+
+    get computer() {
+        return this.players.find(player => player.role === "computer")
+    };
+
+    get user() {
+        return this.players.find(player => player.role === "user")
+    };
+
+    get board() {
+        return this.players.find(player => player.role === "board")
+    };
+
+    get deck() {
+        return this.players.find(player => player.role === "deck")
+    };
 }

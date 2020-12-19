@@ -29,7 +29,7 @@ class API {
         let url = playerURL;
 
         const roles = ['user', 'computer', 'deck', 'board']
-        asyncForEach(roles, async (player) => {
+        await asyncForEach(roles, async (player) => {
             let data = {
                 role: player,
                 game_id: game.id
@@ -50,6 +50,32 @@ class API {
                 return new Player(resp.data.id, resp.data.attributes.role)
             })
         })  
+    }
+
+    static async assignCards() {
+        let cards = await this.retrieveAllCards();
+        let playerPool = [game.user, game.board, game.computer, game.deck];
+
+        await asyncForEach(cards.data, async (card) => {
+            let assignedPlayer = sample(playerPool);
+
+            // Prevents 4 of same card month from being dealt to user/board/computer
+            if (assignedPlayer.cards.filter(c => c.month === card.attributes.month).length === 3 && assignedPlayer !== game.deck) {
+                assignedPlayer = sample(playerPool.filter(p => p !== assignedPlayer));
+            };
+            
+            // Check if assigned player hand is full
+            if (Player.checkPlayerForFullHand(assignedPlayer)) {
+                playerPool.splice(playerPool.indexOf(assignedPlayer), 1);
+            };
+            return new Card(card.id, card.attributes.category, card.attributes.image, card.attributes.month, assignedPlayer);
+        })
+        return cards;
+    }
+
+    static async retrieveAllCards() {
+        const resp = await fetch("http://localhost:3000/cards");
+        return await resp.json();
     }
 
     // return fetch(`http://localhost:3000/games/${game.id}`, {
