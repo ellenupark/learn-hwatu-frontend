@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 async function prepareGame() {
-
     await API.createNewGame();
     await API.createPlayers();
     await API.assignCards();
+    await Card.loadCardsToSummary();
     Card.displayAllCards();
     addEventListenerToNameSubmit();
 

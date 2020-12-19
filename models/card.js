@@ -104,4 +104,22 @@ class Card {
     static async fetchRandomCardFromDeck() {
         return sample(game.deck.cards);
     }
+
+    static async loadCardsToSummary() {
+        let cards = await API.retrieveAllCards();
+
+        asyncForEach(cards.data, async function(card) {
+            const cardMonth = downcaseFirstLetter(card.attributes.month);
+            const parentMonthDiv = document.getElementById(cardMonth);
+            const cardMonthImg = Card.createCardSummaryHtml(card)
+            parentMonthDiv.appendChild(cardMonthImg)
+    
+            const cardCategory = card.attributes.category;
+            const parentCategoryDiv =  document.getElementsByClassName(cardCategory)[0];
+            const cardCategoryImg = Card.createCardSummaryHtml(card)
+            parentCategoryDiv.appendChild(cardCategoryImg)
+            return card;
+        });
+        return cards;
+    }
 }
