@@ -122,4 +122,11 @@ class Card {
         });
         return cards;
     }
+
+    static createCardSummaryHtml(card) {
+        let cardHtml = document.createElement('img');
+        cardHtml.setAttribute('src', card.attributes.image);
+        cardHtml.style.maxWidth = "45px";
+        return cardHtml;
+    }
 }
