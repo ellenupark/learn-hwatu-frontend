@@ -54,7 +54,6 @@ class Player {
     }
 
     static retrieveAllMatchedCardsFor(player) {
-        debugger
         return player.cards.filter(card => card.matched === true);
     }
 };

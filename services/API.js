@@ -23,7 +23,7 @@ class API {
         return fetch(url, options)
         .then(resp => resp.json())
         .then((resp) => {
-            new Game(resp.data.attributes.name, resp.data.id)
+            game = new Game(resp.data.attributes.name, resp.data.id)
         })
     }
 

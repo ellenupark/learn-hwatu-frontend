@@ -52,7 +52,7 @@ class Game {
         }
     }
 
-    static async playTurn() {
+    static async playTurn() {        
         if (game.currentPlayer.role === 'user') {
             const playedCard = await Game.moveCardToBoard();
         }
@@ -126,7 +126,6 @@ class Game {
     // End Game
     static async displayWinner() {
         const winner = await Game.calculateWinner();
-        game.points = winner.total;
         await API.updateGamePointTotal();
 
         const parentDiv = document.getElementById('winner');
@@ -161,7 +160,7 @@ class Game {
         let userCards =  Player.retrieveAllMatchedCardsFor(game.user)
         let computerCards = Player.retrieveAllMatchedCardsFor(game.computer)
 
-        debugger
+        
 
         let userPoints = {
             player: game.user,
@@ -194,7 +193,7 @@ class Game {
         computerPoints.total += computerPoints.bright + computerPoints.animal + computerPoints.ribbon + computerPoints.junk;
         
         userPoints.total > computerPoints.total ? winner = userPoints : winner = computerPoints;
-        debugger
+        game.points = userPoints.total;
         return winner;
     }
 
@@ -517,12 +516,12 @@ class Game {
 
     // Reset Game (Play Again)
     static async resetGame() {
+        await Game.clearAllCardsFromBoard();
         let newGame = await API.createNewGame();
-        game.turnCount = 0;
-        game.id = newGame.data.id;
-        game.players.forEach(player => player.cards = [])
+        await API.createPlayers();
         await API.assignCards()
-        game.playGame();
+        Card.displayAllCards();
+        Game.prepareUserTurn()
 
         userPairs.innerHTML = `<h3 id="player-pairs">${game.name}'s Sets</h3>`
         computerPairs.innerHTML = `<h3>Opponent's Sets</h3>`;
@@ -535,10 +534,24 @@ class Game {
         Game.resetWinnerDisplay();
     }
 
+    static async clearAllCardsFromBoard() {
+        await asyncForEach(game.players, async (player) => {
+            document.getElementById(`${player.role}-container`).innerHTML = ""
+            return player;
+        })
+
+        return game.players;
+    }
+    
     // Exit Game 
     static async exitGame() {
-        game.name = "";
+        await Game.clearAllCardsFromBoard();
+
+        game.name = "placeholder";
+        let newGame = await API.createNewGame();
+        await API.createPlayers();
         await API.assignCards()
+        Card.displayAllCards();
 
         userPairs.innerHTML = '<h3 id="player-pairs"></h3>'
         computerPairs.innerHTML = `<h3>Opponent's Sets</h3>`
@@ -557,7 +570,6 @@ class Game {
     static async renderGameHistory() {
         const parentDiv = document.getElementById('leaderboard');
         const games = await API.retrieveTopTenGames();
-        debugger
 
         asyncForEach(games.data, async function(game) {
             parentDiv.innerHTML += Game.renderGameHistoryHtml(game);
@@ -607,7 +619,7 @@ class Game {
     static calculateBrightCardPoints(cards) {
         let points = 0;
         let brightCards = cards.filter(card => card.category === "bright")
-        debugger
+        
 
         switch (brightCards.length) {
             case 5:
@@ -620,12 +632,12 @@ class Game {
                 brightCards.some(card => card.month === 'December') ? points += 2 : points += 3;
                 break;
         }
-        debugger
+        
         return points;
     }
 
     static calculateAnimalCardPoints(cards) {
-        debugger
+        
         let points = 0;
         let animalCards = cards.filter(card => card.category === "animal")
 
@@ -640,12 +652,12 @@ class Game {
         if (animalCards.some(card => card.month === "February") && animalCards.some(card => card.month === "April") && animalCards.some(card => card.month === "August")) {
             points += 5;
         }
-        debugger
+        
         return points;
     }
 
     static calculateRibbonCardPoints(cards) {
-        debugger
+        
         let points = 0;
         let ribbonCards = cards.filter(card => card.category === "ribbon")
 
@@ -668,12 +680,12 @@ class Game {
         if (ribbonCards.some(card => card.month === "April") && ribbonCards.some(card => card.month === "May") && ribbonCards.some(card => card.month === "June")) {
             points += 3;
         }
-        debugger
+        
         return points;
     }
 
     static calculateJunkCardPoints(cards) {
-        debugger
+        
         let points = 0;
         let junkCards = cards.filter(card => card.category === "junk")
 
@@ -685,6 +697,6 @@ class Game {
             points += 1;
         }
         return points;
-        debugger
+        
     }
 }
