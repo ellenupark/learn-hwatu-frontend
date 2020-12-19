@@ -23,4 +23,16 @@ class Game {
     get deck() {
         return this.players.find(player => player.role === "deck")
     };
+
+    get currentPlayer() {
+        if (this.turnCount % 2 === 0) {
+            return this.computer;
+        } else {
+            return this.user;
+        }
+    };
+
+    static play() {
+
+    }
 }

@@ -135,7 +135,7 @@ form {
 }
 
 #main-board {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../card-imgs/9335444b0b481dfa24364f5f97a53793.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/9335444b0b481dfa24364f5f97a53793.jpg');
 }
 
 .row {
@@ -170,7 +170,7 @@ img {
 /* Paired Row */
 
 .pairs {
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../card-imgs/tatami.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/tatami.jpg');
   color: #e5e4e2;
 }
 
@@ -298,7 +298,7 @@ img {
 /* User Won */
 
 .winner-user {
-  background-image: url('../card-imgs/japanese-modern-interior-art-112-artmarketjapan.jpg');
+  background-image: url('../images/japanese-modern-interior-art-112-artmarketjapan.jpg');
   background-position: bottom;
   background-size: cover;
   background-attachment: fixed;
@@ -306,7 +306,7 @@ img {
 
 /* Computer Won */
 .winner-computer {
-  background-image: url('../card-imgs/fig2_wasdale_head.jpg');
+  background-image: url('../images/fig2_wasdale_head.jpg');
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
