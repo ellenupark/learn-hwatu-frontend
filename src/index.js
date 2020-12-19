@@ -1,16 +1,22 @@
+const gameForm = document.getElementById("form")
+const formName = document.getElementById("username")
 const playerURL = "http://localhost:3000/players"
-const gameURL = "http://localhost:3000/games";
+const welcomeDiv = document.getElementById("welcome")
+const mainGameDiv = document.getElementById('main-game')
+const navBar = document.getElementById('nav-bar')
+const gameURL = "http://localhost:3000/games"
 let game;
 
 document.addEventListener("DOMContentLoaded", function() {
     prepareGame();
 });
 
-const prepareGame = async () => {
+async function prepareGame() {
 
     await API.createNewGame();
     await API.createPlayers();
     await API.assignCards();
+    Card.displayAllCards();
     addEventListenerToNameSubmit();
 
 
@@ -22,13 +28,10 @@ const prepareGame = async () => {
 };
 
 function addEventListenerToNameSubmit() {
-    const gameForm = document.getElementById("form");
-    const formName = document.getElementById("username");
-
     gameForm.addEventListener("submit", function(event) {
         event.preventDefault();
     
-        const formResults = getInfo(formName);
+        const formResults = getInfo();
         let url = `http://localhost:3000/games/${game.id}` ;
     
         let options = {
@@ -43,9 +46,9 @@ function addEventListenerToNameSubmit() {
         fetch(url, options)
           .then(resp => resp.json())
           .then(newGame => {
-            if (!newGame.errors){
+            if (!newGame.errors) {
               game.name = newGame.data.attributes.name;
-              Game.play();
+              Game.prepareUserTurn();
               gameForm.reset();
             } else {
               throw new Error( `${newGame.errors}`)
@@ -56,7 +59,7 @@ function addEventListenerToNameSubmit() {
     });
 };
 
-function getInfo(formName) {
+function getInfo() {
     return {
       name: formName.value,
     };

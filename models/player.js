@@ -7,6 +7,21 @@ class Player {
         // this.renderPlayer();
     };
 
+    add(card) {
+        this.cards.push(card);
+        return card;
+    }
+
+    remove(card) {
+        this.cards = this.cards.filter(c => c !== card);
+        return this.cards;
+    }
+
+    static moveCardToNewPlayer(card, oldPlayer, newPlayer) {
+        oldPlayer.remove(card);
+        newPlayer.add(card);
+    }
+
     static checkPlayerForFullHand(player) {
         let full = false;
 
@@ -26,6 +41,21 @@ class Player {
         };
         return full;
     };
+
+    static retrievePlayerData(cardHtml) {
+        let cardOwner;
+        let cardId = cardHtml.id.split('-')[1];
+        game.players.forEach(function(player) {
+            if (player.cards.find(card => card.id == cardId)) {
+                cardOwner = player;
+            }
+        })
+        return cardOwner;
+    }
+
+    static retrieveAllMatchedCardsFor(player) {
+        return player.cards.filter(card => card.matched === true);
+    }
 
     // add(card) {
     //     this.cards.push(card);

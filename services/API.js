@@ -78,6 +78,20 @@ class API {
         return await resp.json();
     }
 
+    static async updateGamePointTotal() {
+        return fetch(`http://localhost:3000/games/${game.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                points: game.points,
+            })
+        })
+        .then(resp => resp.json())
+    }
+
     // return fetch(`http://localhost:3000/games/${game.id}`, {
     //             method: "PATCH",
     //             headers: {
