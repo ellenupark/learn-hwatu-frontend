@@ -1,10 +1,10 @@
 const gameForm = document.getElementById("form")
 const formName = document.getElementById("username")
-const playerURL = "http://localhost:3000/players"
+const playerURL = "https://learn-hwatu-backend.herokuapp.com/players"
 const welcomeDiv = document.getElementById("welcome")
 const mainGameDiv = document.getElementById('main-game')
 const navBar = document.getElementById('nav-bar')
-const gameURL = "http://localhost:3000/games"
+const gameURL = "https://learn-hwatu-backend.herokuapp.com/games"
 let game;
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -32,7 +32,7 @@ function addEventListenerToNameSubmit() {
         event.preventDefault();
     
         const formResults = getInfo();
-        let url = `http://localhost:3000/games/${game.id}` ;
+        let url = `https://learn-hwatu-backend.herokuapp.com/games/${game.id}` ;
     
         let options = {
           method: 'PATCH',
