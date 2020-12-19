@@ -84,8 +84,12 @@ async function asyncForEach(array, callback) {
 
 function sample(array) {
     return array[Math.floor ( Math.random() * array.length )]
-  }
+}
   
-  function timeout(ms) {
+function timeout(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
+}
+
+function downcaseFirstLetter(string) {
+    return string.charAt(0).toLowerCase() + string.slice(1);
+}
