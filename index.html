@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/styles.css">
+        <title>Play Hwatu</title>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="services/API.js"></script>
+        <script type="text/javascript" src="models/game.js"></script>
+        <script type="text/javascript" src="models/player.js"></script>
+        <script type="text/javascript" src="models/card.js"></script>
+        <script type="text/javascript" src="models/cardsPlayer.js"></script>
+        <script type="text/javascript" src="src/index.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light hidden bg-light" id="nav-bar">
+            <a class="navbar-brand" href="#">화투</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">How-to Play</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <button class="dropdown-item disabled" type="button">
+                                <div class="text-wrap">
+                                    <h2>What is Hwatu?</h2>
+                                    <p>Hwatu is a Korean card game that uses a deck of flower cards. These cards, originally invented in Japan, have depictions of various flowers which correspond to a certain month. This style of deck was invented in Japan as a response to the outlawing of traditional 4-suited decks. Currently, flower card games are more popular in Southern Korea. The goal of Hwatu is to capture cards in the central layout while scoring points for combinations among those cards. To capture cards, players must use a card from the same month, or a card with the same flower on it.</p>
+                                </div>
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item disabled" type="button">
+                                <div class="text-wrap">
+                                    <h2>Instructions</h2>
+                                    <p>There are four cards that represent each month of the year with an accompanying flower. The basic objective of the game is to match cards with their respective sets (i.e. match cards from January with another card from January). Each player gets 10 cards and 8 cards are face up on the table. During each player's turn, they will: Play a card from their hand to the table. Flip the top card face up from the center deck onto the table. Collect any pairs they matched. If you have nothing in your hand that matches a card on the table, you will still need to place a card on the table. Hopefully, the card you flip will match another card on the table! At the end of your turn, if you get any matching cards, you collect those cards and let them be visible to your opponents.</p>
+                                </div>
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item disabled" type="button">
+                                <div class="container-fluid text-wrap instructions">
+                                    <div class="row">
+                                        <h2>Scoring</h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Bright Cards</h5>
+                                            <p>
+                                                A set of 5 bright cards scores 15 points.<br>
+                                                A set of 4 bright cards scores 4 points.<br>
+                                                A set of 3 bright cards not including December scores 3 points.<br>
+                                                A set of 3 bright cards including December score 2 points.
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            <h5>Animal Cards</h5>
+                                            <p>
+                                                A set of 5 animal cards scores 1 point.<br>
+                                                Each additional animal card beyond 5 scores 1 extra point.<br>
+                                                The godori combination of 3 bird cards scores 5 points (February, April and August animal cards).
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col float-left">
+                                            <h5>Ribbon Cards</h5>
+                                            <p>
+                                                A set of any 5 ribbon cards scores 1 point.<br>
+                                                Each additional ribbon card beyond 5 scores 1 extra point.<br>
+                                                A set of 3 red ribbons with poems (January, February, March) scores 3 points.<br>
+                                                A set of 3 blue ribbons scores 3 points.<br>
+                                                A set of 3 red ribbons without poems (April. May, July) scores 3 points - the December ribbon card is not part of this set.
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            <h5>Junk Cards</h5>
+                                            <p>
+                                                A set of 10 junk cards counts 1 point.<br>
+                                                Each additional junk card beyond 10 scores 1 extra point.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Card Sets</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <button class="dropdown-item disabled" type="button">
+                                <div class="container-fluid text-wrap">
+                                    <div class="row">
+                                        <div class='col' id='january'>
+                                            <p>January</p>
+                                        </div>
+                                        <div class='col' id='february'>
+                                            <p>February</p>
+                                        </div>
+                                        <div class='col' id='march'>
+                                            <p>March</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class='col' id='april'>
+                                            <p>April</p>
+                                        </div>
+                                        <div class='col' id='may'>
+                                            <p>May</p>
+                                        </div>
+                                        <div class='col' id='june'>
+                                            <p>June</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class='col' id='july'>
+                                            <p>July</p>
+                                        </div>
+                                        <div class='col' id='august'>
+                                            <p>August</p>
+                                        </div>
+                                        <div class='col' id='september'>
+                                            <p>September</p>
+                                        </div>
+                                        </div>
+                                    <div class="row">
+                                        <div class='col' id='october'>
+                                            <p>October</p>
+                                        </div>
+                                        <div class='col' id='november'>
+                                            <p>November</p>
+                                        </div>
+                                        <div class='col' id='december'>
+                                            <p>December</p>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="row">
+                                        <div class='col bright'>
+                                            <p>Bright</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class='col ribbon'>
+                                            <p>Ribbon</p>
+                                        </div>
+                                        </div>
+                                    <div class="row">
+                                        <div class='col animal'>
+                                            <p>Animal</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class='col junk'>
+                                            <p>Junk</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="container-fluid" id="welcome">
+            <div class="row h-100 hidden" id="welcome-div">
+                <div class="col-sm-12 my-auto animated fadeInUp">
+                    <h3>Please enter your name</h3>
+                    <form id='form'>
+                        <div class="form-row align-items-center">
+                          <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInput">Name</label>
+                            <input type="text" name="username" class="form-control mb-2" id="username" placeholder="Name">
+                          </div>
+                          <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+             </div>     
+        </div>
+
+        <div class="container-fluid h-100 hidden" id="winner">
+            <div class="row" id="winner-row">
+                <div class="col-sm-12 my-auto" id="display-winner">
+                    <h3 id="game-winner"></h3>
+                    <button type="submit" id="play-again" class="btn btn-primary mb-2">Play Again?</button>
+                    <button type="submit" id="exit" class="btn btn-secondary mb-2">Exit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid hidden h-100" id="main-game">
+            <div class="row justify-content-center" id="main-board">
+                <div class="col-8">
+                    <div class="row align-items-center justify-content-center maintain-height">
+                        <div class="col" id="computer-container">
+                        </div>
+                        <div class="col-3" id="current-player-display">
+                        </div>
+                    </div>
+                    <div class="row align-items-center justify-content-center maintain-height" id="board">
+                        <div class="col-3" id="played-container">
+                        </div>
+                        <div class="col-6" id="board-container">       
+                        </div>
+                        <div class="col-3" id="deck-container">
+                        </div>
+                    </div>
+                    <div class="row align-items-center justify-content-center maintain-height">
+                        <div class="col" id="user-container">
+                        </div>
+                        <div class="col-3" id="instruction-display">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pairs">
+                <div class="col paired" id="computer-pairs">
+                    <h3>Opponent's Sets</h3>
+                </div>
+                <div class="col paired" id="user-pairs">
+                    <h3 id="player-pairs"></h3>
+                </div>
+        </div>
+        </div>
+  </body>
+</html>
