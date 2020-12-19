@@ -1,7 +1,9 @@
 class API {
 
     static async createNewGame(oldName) {
-        let gameName = oldName ||= ""
+        let gameName;
+        game ? gameName = game.name : gameName = "placeholder";
+
         let url = gameURL;
 
         let data = {
@@ -21,7 +23,7 @@ class API {
         return fetch(url, options)
         .then(resp => resp.json())
         .then((resp) => {
-            new Game("", resp.data.id)
+            new Game(resp.data.attributes.name, resp.data.id)
         })
     }
 

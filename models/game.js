@@ -510,7 +510,45 @@ class Game {
         next = false; // reset var
     };
 
-    // End Game 
+    // Reset Game (Play Again)
+    static async resetGame() {
+        let newGame = await API.createNewGame();
+        game.turnCount = 0;
+        game.id = newGame.data.id;
+        game.players.forEach(player => player.cards = [])
+        await API.assignCards()
+        game.playGame();
+
+        userPairs.innerHTML = `<h3 id="player-pairs">${game.name}'s Sets</h3>`
+        computerPairs.innerHTML = `<h3>Opponent's Sets</h3>`;
+        document.getElementById('display-winner').lastElementChild.remove();
+        document.getElementById('winner').classList.remove('winner-user');
+        document.getElementById('winner').classList.remove('winner-computer');
+
+        document.getElementById('main-game').classList.remove('hidden')
+        document.getElementById('winner').classList.add('hidden')
+        Game.resetWinnerDisplay();
+    }
+
+    // Exit Game 
+    static async exitGame() {
+        game.name = "";
+        await API.assignCards()
+
+        userPairs.innerHTML = '<h3 id="player-pairs"></h3>'
+        computerPairs.innerHTML = `<h3>Opponent's Sets</h3>`
+        document.getElementById('winner').classList.remove('winner-user');
+        document.getElementById('winner').classList.remove('winner-computer');
+        document.getElementById('point-display').remove();
+
+        document.getElementById('main-game').classList.add('hidden')
+        document.getElementById('winner').classList.add('hidden')
+        document.getElementById('welcome').classList.remove('hidden')
+        document.getElementById('nav-bar').classList.add('hidden');
+        Game.resetWinnerDisplay();
+    }
+
+    // Leaderboard
     static async renderGameHistory() {
         const parentDiv = document.getElementById('leaderboard');
         const games = await API.loadTopTenGames();
@@ -521,6 +559,42 @@ class Game {
         })
          
         return games;
+    };
+
+    static renderUserPointTotal(winner) {
+        return `
+                <div class="row justify-content-center">
+                    <div class="col-3" id="point-display">
+                        <h4>${game.name}'s Total Points: ${winner.total}</h4>
+                        <p>Bright Points: ${winner.bright}</p>
+                        <p>Animal Points: ${winner.animal}</p>
+                        <p>Ribbon Points: ${winner.ribbon}</p>
+                        <p>Junk Points: ${winner.junk}</p>
+                    </div>
+                    <div class="col-3" id="leaderboard">
+                        <h4>High Scores</h4>
+                    </div>
+                </div>
+        `
+    };
+
+    static renderGameHistoryHtml(game) {
+        return `
+            <p>${game.attributes.name}: ${game.attributes.points}</p>
+        `
+    };
+
+    // Reset Winner Display
+    static resetWinnerDisplay() {
+        document.getElementById('winner').innerHTML = `
+            <div class="row">
+                <div class="col-sm-12 my-auto" id="display-winner">
+                    <h1 id="game-winner"></h1>
+                    <button type="submit" id="play-again" class="btn btn-primary mb-2">Play Again?</button>
+                    <button type="submit" id="exit" class="btn btn-secondary mb-2">Exit</button>
+                </div>
+            </div>
+        `        
     };
     
     // Scoring
