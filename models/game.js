@@ -161,6 +161,8 @@ class Game {
         let userCards =  Player.retrieveAllMatchedCardsFor(game.user)
         let computerCards = Player.retrieveAllMatchedCardsFor(game.computer)
 
+        debugger
+
         let userPoints = {
             player: game.user,
             bright: 0,
@@ -192,6 +194,7 @@ class Game {
         computerPoints.total += computerPoints.bright + computerPoints.animal + computerPoints.ribbon + computerPoints.junk;
         
         userPoints.total > computerPoints.total ? winner = userPoints : winner = computerPoints;
+        debugger
         return winner;
     }
 
@@ -296,23 +299,24 @@ class Game {
             let pairs = cardsOnBoard.filter(c => c.classList.contains('highlight'));
             
             pairs.forEach(function(card) {
-                card.addEventListener('click', () => {
-                    Game.selectCardToPairWith()
-                    .then(resp => next = true)
-                });
+                card.addEventListener('click', Game.selectCardToPairWith);
             });
             return pairs;
         };
     
         // Removes all highlights from cards and returns user selected card
         static async selectCardToPairWith() {
+            let cardsOnBoard = Array.from(document.getElementById('board-container').children);
+            let pairs = cardsOnBoard.filter(c => c.classList.contains('highlight'));
+
+            pairs.forEach(function(card) {
+                card.removeEventListener('click', Game.selectCardToPairWith);
+            });
+
             const selectedCard = event.target
             const instructionNotice = document.getElementById('instruction-display');
             instructionNotice.innerHTML = "";
-    
-            let cardsOnBoard = Array.from(document.getElementById('board-container').children);
-            let pairs = cardsOnBoard.filter(c => c.classList.contains('highlight'));
-    
+        
             pairs.forEach(function(card) {
                 if (card !== selectedCard) {
                     card.classList.remove('highlight');
@@ -320,7 +324,8 @@ class Game {
             })
     
             selectedCard.classList.add('set')
-            selectedCard.removeEventListener('click', Game.selectCardToPairWith)
+
+            next = true
             return selectedCard;
         };    
 
@@ -339,7 +344,7 @@ class Game {
             await timeout(1000);
         }
 
-        const renderFlippedCard =  topCardOfDeck.renderCardBelongingTo(game.board)
+        const renderFlippedCard = topCardOfDeck.renderCardBelongingTo(game.board)
         
         if (game.turnCount === 22) {
             deckContainer.firstElementChild.remove();
@@ -434,17 +439,17 @@ class Game {
         let cardData = Card.retrieveCardDataFrom(cardHtml);
 
         Player.moveCardToNewPlayer(cardData, previousCardOwner, game.currentPlayer)
-        cardData.matched === true;
 
         await Game.displayCardInPairsDiv(cardHtml, cardData);
+        cardData.matched = true;
         return cardData;
     };
 
     // Render collected card to sets div
-    static async displayCardInPairsDiv(oldCard, card) {
+    static async displayCardInPairsDiv(oldCard, cardData) {
         oldCard.remove()
-        card.renderCardToCollectedSets(game.currentPlayer)
-        return card;
+        cardData.renderCardToCollectedSets(game.currentPlayer)
+        return cardData;
     }
 
     // Current Player Display Window
@@ -551,7 +556,8 @@ class Game {
     // Leaderboard
     static async renderGameHistory() {
         const parentDiv = document.getElementById('leaderboard');
-        const games = await API.loadTopTenGames();
+        const games = await API.retrieveTopTenGames();
+        debugger
 
         asyncForEach(games.data, async function(game) {
             parentDiv.innerHTML += Game.renderGameHistoryHtml(game);
@@ -601,6 +607,7 @@ class Game {
     static calculateBrightCardPoints(cards) {
         let points = 0;
         let brightCards = cards.filter(card => card.category === "bright")
+        debugger
 
         switch (brightCards.length) {
             case 5:
@@ -613,10 +620,12 @@ class Game {
                 brightCards.some(card => card.month === 'December') ? points += 2 : points += 3;
                 break;
         }
+        debugger
         return points;
     }
 
     static calculateAnimalCardPoints(cards) {
+        debugger
         let points = 0;
         let animalCards = cards.filter(card => card.category === "animal")
 
@@ -631,11 +640,12 @@ class Game {
         if (animalCards.some(card => card.month === "February") && animalCards.some(card => card.month === "April") && animalCards.some(card => card.month === "August")) {
             points += 5;
         }
-
+        debugger
         return points;
     }
 
     static calculateRibbonCardPoints(cards) {
+        debugger
         let points = 0;
         let ribbonCards = cards.filter(card => card.category === "ribbon")
 
@@ -658,10 +668,12 @@ class Game {
         if (ribbonCards.some(card => card.month === "April") && ribbonCards.some(card => card.month === "May") && ribbonCards.some(card => card.month === "June")) {
             points += 3;
         }
+        debugger
         return points;
     }
 
     static calculateJunkCardPoints(cards) {
+        debugger
         let points = 0;
         let junkCards = cards.filter(card => card.category === "junk")
 
@@ -673,5 +685,6 @@ class Game {
             points += 1;
         }
         return points;
+        debugger
     }
 }

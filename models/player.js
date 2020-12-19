@@ -4,7 +4,6 @@ class Player {
         this.role = role;
         this.cards = [];
         game.players.push(this);
-        // this.renderPlayer();
     };
 
     add(card) {
@@ -20,6 +19,7 @@ class Player {
     static moveCardToNewPlayer(card, oldPlayer, newPlayer) {
         oldPlayer.remove(card);
         newPlayer.add(card);
+        return card;
     }
 
     static checkPlayerForFullHand(player) {
@@ -54,20 +54,7 @@ class Player {
     }
 
     static retrieveAllMatchedCardsFor(player) {
+        debugger
         return player.cards.filter(card => card.matched === true);
     }
-
-    // add(card) {
-    //     this.cards.push(card);
-    //     return card;
-    // }
-
-    // renderPlayer(){
-    //     let playerDiv = document.getElementById(`${this.role}-container`)
-    //     playerDiv.classList.add(`player-${this.id}`);
-    // };
-
-    // static createPlayers(players) {
-    //     return players.data.map(player => new Player(player.id, player.attributes.role));
-    // };
 };
