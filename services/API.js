@@ -92,6 +92,11 @@ class API {
         .then(resp => resp.json())
     }
 
+    static async retrieveTopTenGames() {
+        return fetch("http://localhost:3000/games/history")
+        .then(resp => resp.json())
+    }
+
     // return fetch(`http://localhost:3000/games/${game.id}`, {
     //             method: "PATCH",
     //             headers: {

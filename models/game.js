@@ -510,7 +510,20 @@ class Game {
         next = false; // reset var
     };
 
-    // End Game Scoring
+    // End Game 
+    static async renderGameHistory() {
+        const parentDiv = document.getElementById('leaderboard');
+        const games = await API.loadTopTenGames();
+
+        asyncForEach(games.data, async function(game) {
+            parentDiv.innerHTML += Game.renderGameHistoryHtml(game);
+            return game;
+        })
+         
+        return games;
+    };
+    
+    // Scoring
     static calculateBrightCardPoints(cards) {
         let points = 0;
         let brightCards = cards.filter(card => card.category === "bright")
