@@ -198,7 +198,7 @@ img {
 }
 
 .paired {
-  min-height: 200px;
+  min-height: 350px;
   border-right: 3px solid black;
 }
 
@@ -299,7 +299,7 @@ img {
 
 #winner-row {
   padding-bottom: 45px;
-  height: 100vh;
+  height: 35vh;
 }
 
 /* User Won */
