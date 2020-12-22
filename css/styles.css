@@ -176,6 +176,7 @@ img {
 .pairs {
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/tatami.jpg');
   color: #e5e4e2;
+  min-height: 50%;
 }
 
 #computer-pairs {
@@ -328,7 +329,7 @@ img {
 @media only screen 
 and (min-width : 1824px) {
   #board {
-    min-height: 350px;
+    min-height: 400px;
   }
 
   .maintain-height {
