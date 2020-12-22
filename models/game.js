@@ -136,7 +136,13 @@ class Game {
         
         // Render users points
         parentDiv.innerHTML += Game.renderUserPointTotal(winner);
-        winner.player === game.user ? parentDiv.classList.add('winner-user') : parentDiv.classList.add('winner-computer');
+        if (winner.player === game.user) {
+            parentDiv.classList.add('winner-user');
+            parentDiv.classList.add('win-image');
+        } else {
+            parentDiv.classList.add('winner-computer');
+            parentDiv.classList.add('lose-image');
+        }
 
         // Render game history
         await Game.renderGameHistory();
