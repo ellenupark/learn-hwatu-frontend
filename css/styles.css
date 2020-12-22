@@ -222,7 +222,7 @@ img {
 .flip-notice {
   background-color: lightyellow;
   border: 2px solid grey;
-  padding: 5px;
+  padding: 8px;
   border-radius: 10px;
 }
 
@@ -247,14 +247,14 @@ img {
 #current-computer {
   background-color: lightgrey;
   border: 2px solid grey;
-  padding: 5px;
+  padding: 8px;
   border-radius: 55px;
 }
 
 #current-user {
   background-color: lightgreen;
   border: 2px solid grey;
-  padding: 5px;
+  padding: 8px;
   border-radius: 55px;
 }
 
