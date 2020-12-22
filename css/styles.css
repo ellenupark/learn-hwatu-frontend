@@ -134,9 +134,9 @@ form {
 }
 
 /* Game Board */
-#main-game {
+/* #main-game {
   height: 50%;
-}
+} */
 
 #main-board {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/9335444b0b481dfa24364f5f97a53793.jpg');
