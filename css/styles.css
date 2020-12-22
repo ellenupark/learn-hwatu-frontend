@@ -269,7 +269,6 @@ img {
 
 #winner {
   height: 100vh;
-  border: 1px solid red;
 }
 
 #game-winner {
@@ -299,7 +298,7 @@ img {
 
 #winner-row {
   padding-bottom: 45px;
-  height: 35vh;
+  height: 50%;
 }
 
 /* User Won */
