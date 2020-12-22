@@ -318,6 +318,9 @@ img {
 
 @media only screen 
 and (min-width : 1824px) {
+  #main-board {
+    min-height: 700px;
+  }
 
   .maintain-height {
     min-height: 200px;
@@ -409,3 +412,4 @@ and (min-width : 1824px) {
   #point-display h4, #leaderboard h4 {
     font-size: 16px;
   }
+}
