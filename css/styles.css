@@ -278,6 +278,7 @@ img {
 
 #point-display, #leaderboard {
   margin: 20px;
+  margin-bottom: 35px;
   padding: 10px;
   text-align: center;
   background-color: #FFFFFF;
@@ -298,7 +299,7 @@ img {
 
 #winner-row {
   padding-bottom: 45px;
-  height: 65vh;
+  height: 45vh;
 }
 
 /* User Won */
