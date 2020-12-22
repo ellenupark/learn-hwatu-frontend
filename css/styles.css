@@ -134,9 +134,9 @@ form {
 }
 
 /* Game Board */
-/* #main-game {
-  height: 50%;
-} */
+#main-game {
+  height: 100vh;
+}
 
 #main-board {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/9335444b0b481dfa24364f5f97a53793.jpg');
@@ -316,3 +316,96 @@ img {
   background-attachment: fixed;
 }
 
+@media only screen 
+and (min-width : 1824px) {
+
+  .maintain-height {
+    min-height: 200px;
+  }
+
+  img {
+    width: 80px;
+    padding: 4px;
+  }
+  
+  .paired img {
+    width: 63px;
+  }
+
+}
+
+@media only screen 
+  and (min-device-width : 320px) 
+  and (max-device-width : 480px) {
+
+  .maintain-height {
+    min-height: 120px;
+  }
+  
+  img {
+    width: 25px;
+    padding: 1px;
+  }
+    
+  .paired img {
+    width: 15px;
+  }
+
+  #player-pairs, #computer-pairs h3 {
+    padding-top: 4px;
+    font-size: 12px;
+  }
+
+  .month-title {
+    font-size: 10px;
+  }
+
+  .rule-notice {
+    padding: 2px;
+  }
+
+  .flip-notice {
+    padding: 2px;
+    border-radius: 10px;
+  }
+
+  .flip-notice h5, .rule-notice h5 {
+    font-size: 10px;
+
+  }
+
+  .current-player-notice h5 {
+    font-size: 10px;
+  }
+  
+  #current-computer, #current-user {
+    padding: 2px;
+  }
+
+  .computer-container, .user-container {
+    max-width: 60%;
+  }
+
+  .board-container {
+    max-width: 60%;
+  }
+
+  .played-container, .deck-container {
+    max-width: 20%;
+  }
+
+  .col-md-auto {
+    max-width: 40%;
+  }
+
+  #main-board {
+    min-height: 400px;
+  }
+
+  #point-display, #leaderboard {
+    font-size: 10px;
+  }
+
+  #point-display h4, #leaderboard h4 {
+    font-size: 16px;
+  }
