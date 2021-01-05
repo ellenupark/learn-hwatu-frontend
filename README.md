@@ -9,6 +9,8 @@
 
 ## Description
 
+<img src="./images/learnhwatuimage.png" width="600">
+
 Play against the computer and learn how to play the Korean card game, Hwatu.
 Learn Hwatu is a single page application built with a vanilla Javascript, HTML and CSS frontend.
 The backend was built with Ruby on Rails (RESTful API).
