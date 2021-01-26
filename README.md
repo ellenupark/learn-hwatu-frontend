@@ -5,7 +5,7 @@
 
 ## Project Demo
 
-[learn-hwatu.herokuapp](https://learn-hwatu.herokuapp.com/) | [Summary Video](https://www.youtube.com/watch?v=deORxiINv8I)
+[learn-hwatu.herokuapp](https://learn-hwatu.herokuapp.com/) | [Demo Video](https://www.youtube.com/watch?v=deORxiINv8I)
 
 ## Description
 
