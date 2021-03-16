@@ -169,10 +169,17 @@
         </nav>
         
         <div class="container-fluid" id="welcome">
-            <div class="row h-100" id="welcome-div">
+            <div class="row h-100" id="loading-div">
+                <div class="col-sm-12 my-auto">
+                    <h4>Dealing cards...</h4>
+                    <h4>Thank you for your patience.</h4>
+                    <div class="spinner-border" role="status"></div>
+                </div>
+            </div>
+            <div class="row h-100 hidden" id="welcome-div">
                 <div class="col-sm-12 my-auto animated fadeInUp">
                     <h3>Please enter your name</h3>
-                    <form id='form'>
+                    <form id='form' method="patch">
                         <div class="form-row align-items-center">
                           <div class="col-auto">
                             <label class="sr-only" for="inlineFormInput">Name</label>
@@ -184,7 +191,7 @@
                         </div>
                     </form>
                 </div>
-             </div>     
+            </div>     
         </div>
 
         <div class="container-fluid h-100 hidden" id="winner">

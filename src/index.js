@@ -18,6 +18,10 @@ async function prepareGame() {
     await Card.loadCardsToSummary();
     Card.displayAllCards();
     addEventListenerToNameSubmit();
+    const loadingDiv = document.getElementById("loading-div")
+    const welcomeDiv = document.getElementById("welcome-div")
+    loadingDiv.classList.add('hidden')
+    welcomeDiv.classList.remove('hidden')
 
 
 //   await API.loadPlayers();
